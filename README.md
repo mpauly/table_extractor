@@ -71,5 +71,6 @@ You can switch between lines using the buttons on the right, check that all cell
 
 ## Known limitations and improving results
 * The identification of letters in a cell is rudimentary. If you want to improve it have a look at `contour_filters.py`.
+* You can implement custom checks (e.g. sum constraints in table). For this see `datahandler.py` and in particular `check_row()`.
 * To improve results you can change the tesseract language and also train you own models. For this you can also export the individual images, for more info see the `--keepfiles` option.
 * Currently, this program only supports recognizing numbers - this can easily be changed, however in our use case restricting to number improved detection accuracy.
