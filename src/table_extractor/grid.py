@@ -207,4 +207,8 @@ class GridChooser(QWidget):
             universal_newlines=True,
             **kwargs
         )
-        return result.stdout.decode(encoding="ascii", errors="ignore").strip()
+        try:
+            resultstring = result.stdout.decode(encoding="ascii", errors="ignore")
+        except AttributeError:
+            resultstring = result.stdout
+        return resultstring.strip()
