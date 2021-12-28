@@ -36,6 +36,9 @@ class GridChooser(QWidget):
         if self.keepfiles and not os.path.exists(self.tess_config["training_dir"]):
             os.makedirs(self.tess_config["training_dir"])
 
+        if not os.path.exists("pics"):
+            os.makedirs("pics")
+
         # delte old files
         for f in glob.glob(self.path_original_imgs.format("*", "*")):
             os.remove(f)
@@ -198,5 +201,10 @@ class GridChooser(QWidget):
         kwargs = {}
         if "data" in self.tess_config:
             kwargs.update({"env": {"TESSDATA_PREFIX": self.tess_config["data"]}})
-        result = subprocess.run(tess_string.split(" "), capture_output=True, **kwargs)
+        result = subprocess.run(
+            tess_string.split(" "),
+            stdout=subprocess.PIPE,
+            universal_newlines=True,
+            **kwargs
+        )
         return result.stdout.decode(encoding="ascii", errors="ignore").strip()
