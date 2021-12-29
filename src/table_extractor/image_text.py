@@ -116,7 +116,7 @@ class ImageTextRowWidget(QWidget):
                     txt = self.data.get_data_txt(xi, yi)
                     fi = open(
                         "{}/{}_{}_{}.gt.txt".format(
-                            self.tess_config["training_dir"], self.pagename, yi, xi
+                            self.tess_config["training_dir"], self.pagename, xi, yi
                         ),
                         "w",
                     )
